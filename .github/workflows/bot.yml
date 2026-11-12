@@ -1,0 +1,25 @@
+name: Hinatasoft Scraper
+
+on:
+  workflow_dispatch: # Bisa dijalanin manual dari tab Actions
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Playwright & Dependencies
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: Jalankan Scraper
+        run: node scraper.js
