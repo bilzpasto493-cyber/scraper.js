@@ -1,7 +1,7 @@
 name: Hinatasoft Scraper
 
 on:
-  workflow_dispatch: # Bisa dijalanin manual dari tab Actions
+  workflow_dispatch:
 
 jobs:
   run-bot:
@@ -23,3 +23,12 @@ jobs:
 
       - name: Jalankan Scraper
         run: node scraper.js
+
+      - name: Upload Screenshot
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: hasil-bot
+          path: |
+            invoice.png
+            error.png
